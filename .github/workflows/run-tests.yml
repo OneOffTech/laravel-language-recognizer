@@ -30,6 +30,7 @@ jobs:
         run: |
           mkdir ./bin
           wget -O ./bin/language-guesser https://github.com/avvertix/franc-bin/releases/download/v1.0.0/franc-bin-linux
+          chmod +x ./bin/language-guesser
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
