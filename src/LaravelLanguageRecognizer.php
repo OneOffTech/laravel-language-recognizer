@@ -7,11 +7,11 @@ use Oneofftech\LaravelLanguageRecognizer\Drivers\LocalLanguageRecognizerDriver;
 
 /**
  * @method static array recognize(string $text, $limit = 2)
- * 
+ *
  * @see \Oneofftech\LaravelLanguageRecognizer\Contracts\LanguageRecognizer
  * @see \Illuminate\Support\Manager
  */
-class LaravelLanguageRecognizer extends Manager 
+class LaravelLanguageRecognizer extends Manager
 {
     /**
      * Get a driver instance.
@@ -30,7 +30,6 @@ class LaravelLanguageRecognizer extends Manager
     {
         return new LocalLanguageRecognizerDriver($this->container['config']['language-recognizer.drivers.local']);
     }
-
 
     /**
      * Get the default driver name.

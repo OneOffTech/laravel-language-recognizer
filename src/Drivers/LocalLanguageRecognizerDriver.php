@@ -3,25 +3,21 @@
 namespace Oneofftech\LaravelLanguageRecognizer\Drivers;
 
 use Exception;
-use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Oneofftech\LaravelLanguageRecognizer\LaravelLanguageRecognizer;
 use Oneofftech\LaravelLanguageRecognizer\Contracts\LanguageRecognizer;
-use RuntimeException;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class LocalLanguageRecognizerDriver implements LanguageRecognizer
 {
-    
     public function __construct($config)
     {
-        
-        if(empty($config['path'])){
+        if (empty($config['path'])) {
             throw new InvalidArgumentException("Null binary path");
         }
-        
+
         $this->binaryPath = $this->obtainBinaryPath($config['path']);
     }
 
@@ -52,7 +48,6 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
         throw new InvalidArgumentException("Specified binary [{$basePath}] does not exists or is not executable.");
     }
 
-
     /**
      * @inherit
      */
@@ -64,14 +59,12 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
             ->trim()
             ->explode("\n")
             ->take($limit)
-            ->mapWithKeys(function($l){
-
+            ->mapWithKeys(function ($l) {
                 list($lang, $probability) = explode(" ", $l);
 
                 return [$lang => (float)$probability];
             })->toArray();
     }
-
 
     private function run($text)
     {
@@ -93,7 +86,7 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
         );
 
         $process->setInput($text);
-        
+
         $process->setTimeout(10);
         $process->setIdleTimeout(10);
 
@@ -109,5 +102,4 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
 
         return $process->getOutput();
     }
-
 }

@@ -8,7 +8,6 @@ class LaravelLanguageRecognizerServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-
         if ($this->app->runningInConsole()) {
             // $this->commands([
             //     ScaffoldAuthenticationControllers::class,
@@ -25,7 +24,7 @@ class LaravelLanguageRecognizerServiceProvider extends ServiceProvider
             __DIR__.'/../config/language-recognizer.php',
             'language-recognizer'
         );
-        
+
         $this->app->singleton(LaravelLanguageRecognizer::class, function ($app) {
             return new LaravelLanguageRecognizer($app);
         });

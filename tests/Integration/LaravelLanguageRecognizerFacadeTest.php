@@ -3,12 +3,10 @@
 namespace Oneofftech\LaravelLanguageRecognizer\Tests\Integration;
 
 use Oneofftech\LaravelLanguageRecognizer\Drivers\LocalLanguageRecognizerDriver;
-use Oneofftech\LaravelLanguageRecognizer\LaravelLanguageRecognizer;
 use Oneofftech\LaravelLanguageRecognizer\Support\Facades\LanguageRecognizer;
 
 class LaravelLanguageRecognizerFacadeTest extends TestCase
 {
-
     /** @test */
     public function default_local_driver_can_be_obtained()
     {
