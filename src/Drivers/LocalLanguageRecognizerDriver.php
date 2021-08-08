@@ -12,6 +12,13 @@ use Symfony\Component\Process\Process;
 
 class LocalLanguageRecognizerDriver implements LanguageRecognizer
 {
+    /**
+     * The path of the Franc binary
+     * 
+     * @var string
+     */
+    protected $binaryPath = null;
+
     public function __construct($config)
     {
         if (empty($config['path'])) {
@@ -21,6 +28,9 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
         $this->binaryPath = $this->obtainBinaryPath($config['path']);
     }
 
+    /**
+     * @return false|string
+     */
     protected function obtainBinaryPath($configuredPath)
     {
         $basePath = Str::startsWith($configuredPath, '.') ? base_path($configuredPath) : $configuredPath;
@@ -66,7 +76,7 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
             })->toArray();
     }
 
-    private function run($text)
+    private function run($text): string
     {
         $options = [$this->binaryPath, '--all'];
 
@@ -97,7 +107,7 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
                 throw new Exception((new ProcessFailedException($process))->getMessage());
             }
         } catch (ProcessFailedException $ex) {
-            throw new Exception($ex->getMessage(), $ex->getCode(), $ex);
+            throw new Exception($ex->getMessage(), 143, $ex);
         }
 
         return $process->getOutput();

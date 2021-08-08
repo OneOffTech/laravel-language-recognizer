@@ -16,17 +16,26 @@ You can install the package via composer:
 composer require oneofftech/laravel-language-recognizer
 ```
 
+The language recognition, when performed using the local driver, 
+is done using the [Franc](https://github.com/wooorm/franc) library, in particular
+a [packaged version](https://github.com/avvertix/franc-bin) in form on an executable. 
+
+To download the executable version run:
+
+```bash
+php artisan language-recognizer:install-local-driver
+```
+
 You can publish the config file with:
+
 ```bash
 php artisan vendor:publish --provider="Oneofftech\LaravelLanguageRecognizer\LaravelLanguageRecognizerServiceProvider" --tag="laravel-language-recognizer-config"
 ```
 
-This is the contents of the published config file:
+> If you change the path to the Franc binary, as configured in the local driver, ensure that the file is moved or present in that location. You can run `php artisan language-recognizer:install-local-driver` to download the binary in the configured location
 
-```php
-return [
-];
-```
+This configuration file allows to specifiy the drivers for performing the language
+recognition and their eventual options.
 
 ## Usage
 
@@ -37,6 +46,8 @@ LanguageRecognizer::recognize('Which language is used in this string!');
 ```
 
 ## Testing
+
+A test suite is available. To execute the tests run:
 
 ```bash
 composer test

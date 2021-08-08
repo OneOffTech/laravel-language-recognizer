@@ -31,7 +31,7 @@ class LaravelLanguageRecognizerServiceProviderTest extends TestCase
     public function default_local_driver_can_be_instantiated()
     {
         $this->app['config']->set('language-recognizer.default', 'local');
-        $this->app['config']->set('language-recognizer.drivers.local.path', __DIR__ . '/../../bin/language-guesser');
+        $this->app['config']->set('language-recognizer.drivers.local.path', __DIR__ . '/../../bin/language-recognizer');
 
         $service = $this->app[LaravelLanguageRecognizer::class];
 

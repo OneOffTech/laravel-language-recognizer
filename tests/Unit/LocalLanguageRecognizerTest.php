@@ -42,7 +42,7 @@ class LocalLanguageRecognizerTest extends TestCase
     public function it_can_recognize_a_string()
     {
         $driver = new LocalLanguageRecognizerDriver([
-            'path' => __DIR__ . '/../../bin/language-guesser',
+            'path' => __DIR__ . '/../../bin/language-recognizer',
         ]);
 
         $languages = $driver->recognize('This should be an english string');
@@ -57,7 +57,7 @@ class LocalLanguageRecognizerTest extends TestCase
     public function it_respect_the_given_limit()
     {
         $driver = new LocalLanguageRecognizerDriver([
-            'path' => __DIR__ . '/../../bin/language-guesser',
+            'path' => __DIR__ . '/../../bin/language-recognizer',
         ]);
 
         $languages = $driver->recognize('This should be an english string', 10);
@@ -69,7 +69,7 @@ class LocalLanguageRecognizerTest extends TestCase
     public function it_handles_punctuation()
     {
         $driver = new LocalLanguageRecognizerDriver([
-            'path' => __DIR__ . '/../../bin/language-guesser',
+            'path' => __DIR__ . '/../../bin/language-recognizer',
         ]);
 
         $languages = $driver->recognize(",./;'[]\-=", 1);
@@ -81,7 +81,7 @@ class LocalLanguageRecognizerTest extends TestCase
     public function it_handles_bash()
     {
         $driver = new LocalLanguageRecognizerDriver([
-            'path' => __DIR__ . '/../../bin/language-guesser',
+            'path' => __DIR__ . '/../../bin/language-recognizer',
         ]);
 
         $languages = $driver->recognize('!@#$%^&*()`~', 1);
@@ -93,7 +93,7 @@ class LocalLanguageRecognizerTest extends TestCase
     public function it_handles_utf8()
     {
         $driver = new LocalLanguageRecognizerDriver([
-            'path' => __DIR__ . '/../../bin/language-guesser',
+            'path' => __DIR__ . '/../../bin/language-recognizer',
         ]);
 
         $languages = $driver->recognize('Ω≈ç√∫˜µ≤≥÷', 1);
@@ -105,7 +105,7 @@ class LocalLanguageRecognizerTest extends TestCase
     public function it_handles_utf8_c()
     {
         $driver = new LocalLanguageRecognizerDriver([
-            'path' => __DIR__ . '/../../bin/language-guesser',
+            'path' => __DIR__ . '/../../bin/language-recognizer',
         ]);
 
         $languages = $driver->recognize('찦차를 타고 온 펲시맨과 쑛다리 똠방각하', 1);
@@ -117,7 +117,7 @@ class LocalLanguageRecognizerTest extends TestCase
     public function it_handles_emoji()
     {
         $driver = new LocalLanguageRecognizerDriver([
-            'path' => __DIR__ . '/../../bin/language-guesser',
+            'path' => __DIR__ . '/../../bin/language-recognizer',
         ]);
 
         $languages = $driver->recognize('🐵 🙈 🙉 🙊', 1);

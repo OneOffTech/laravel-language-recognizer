@@ -3,15 +3,18 @@
 namespace Oneofftech\LaravelLanguageRecognizer;
 
 use Illuminate\Support\ServiceProvider;
+use Oneofftech\LaravelLanguageRecognizer\Commands\InstallLocalRecognizerCommand;
 
 class LaravelLanguageRecognizerServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
-            // $this->commands([
-            //     ScaffoldAuthenticationControllers::class,
-            // ]);
+
+            $this->commands([
+                InstallLocalRecognizerCommand::class,
+            ]);
+            
             $this->publishes([
                 __DIR__.'/../config/language-recognizer.php' => config_path('language-recognizer.php'),
             ]);

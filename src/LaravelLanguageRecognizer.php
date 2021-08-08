@@ -26,6 +26,9 @@ class LaravelLanguageRecognizer extends Manager
         return parent::driver($driver);
     }
 
+    /**
+     * @return \Oneofftech\LaravelLanguageRecognizer\Drivers\LocalLanguageRecognizerDriver
+     */
     protected function createLocalDriver()
     {
         return new LocalLanguageRecognizerDriver($this->container['config']['language-recognizer.drivers.local']);

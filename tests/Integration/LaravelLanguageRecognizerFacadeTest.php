@@ -11,7 +11,7 @@ class LaravelLanguageRecognizerFacadeTest extends TestCase
     public function default_local_driver_can_be_obtained()
     {
         $this->app['config']->set('language-recognizer.default', 'local');
-        $this->app['config']->set('language-recognizer.drivers.local.path', __DIR__ . '/../../bin/language-guesser');
+        $this->app['config']->set('language-recognizer.drivers.local.path', __DIR__ . '/../../bin/language-recognizer');
 
         $service = LanguageRecognizer::driver('local');
 
@@ -22,7 +22,7 @@ class LaravelLanguageRecognizerFacadeTest extends TestCase
     public function recognition_can_be_done_from_facade()
     {
         $this->app['config']->set('language-recognizer.default', 'local');
-        $this->app['config']->set('language-recognizer.drivers.local.path', __DIR__ . '/../../bin/language-guesser');
+        $this->app['config']->set('language-recognizer.drivers.local.path', __DIR__ . '/../../bin/language-recognizer');
 
         $languages = LanguageRecognizer::recognize('This is a string');
 
