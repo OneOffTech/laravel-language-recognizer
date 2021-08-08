@@ -4,8 +4,8 @@ namespace Oneofftech\LaravelLanguageRecognizer\Commands;
 
 use Exception;
 use Illuminate\Console\Command;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class InstallLocalRecognizerCommand extends Command
 {
@@ -16,7 +16,7 @@ class InstallLocalRecognizerCommand extends Command
 
     /**
      * Artifacts urls keyed based on operating system
-     * 
+     *
      * @var array
      */
     protected static $urls = [
@@ -24,7 +24,6 @@ class InstallLocalRecognizerCommand extends Command
         'darwin' => 'https://github.com/avvertix/franc-bin/releases/download/v1.0.0/franc-bin-macos',
         'winnt' => 'https://github.com/avvertix/franc-bin/releases/download/v1.0.0/franc-bin-win.exe',
     ];
-
 
     /**
      * @return int
@@ -35,10 +34,10 @@ class InstallLocalRecognizerCommand extends Command
         $this->comment('Downloading Franc from binary from https://github.com/avvertix/franc-bin');
 
         $os = $this->getOs();
-        
+
         $url = self::$urls[$os] ?? null;
-        
-        if(is_null($url)){
+
+        if (is_null($url)) {
             throw new Exception("Unsupported operating system [{$os}]");
         }
 
@@ -46,7 +45,7 @@ class InstallLocalRecognizerCommand extends Command
 
         $downloadPath = $this->getDownloadPath();
 
-        if(!is_dir($directory = dirname($downloadPath))){
+        if (! is_dir($directory = dirname($downloadPath))) {
             mkdir($directory);
         }
 
@@ -67,16 +66,15 @@ class InstallLocalRecognizerCommand extends Command
     protected function getDownloadPath()
     {
         $pathOption = $this->option('path');
-        
-        if($pathOption){
 
-            if($this->getOs() === 'winnt' && ! Str::endsWith($pathOption, '.exe')){
+        if ($pathOption) {
+            if ($this->getOs() === 'winnt' && ! Str::endsWith($pathOption, '.exe')) {
                 return $pathOption.'.exe';
             }
 
             return $pathOption;
         }
-        
+
         $suffixes = [
             'winnt' => '.exe',
         ];

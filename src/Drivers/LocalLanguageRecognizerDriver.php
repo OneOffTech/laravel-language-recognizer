@@ -14,7 +14,7 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
 {
     /**
      * The path of the Franc binary
-     * 
+     *
      * @var string
      */
     protected $binaryPath;
@@ -29,7 +29,7 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
     }
 
     /**
-     * 
+     *
      * @param string $configuredPath
      * @return string
      * @throws \InvalidArgumentException

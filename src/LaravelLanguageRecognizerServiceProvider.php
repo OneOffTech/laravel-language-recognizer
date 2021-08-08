@@ -10,11 +10,10 @@ class LaravelLanguageRecognizerServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->app->runningInConsole()) {
-
             $this->commands([
                 InstallLocalRecognizerCommand::class,
             ]);
-            
+
             $this->publishes([
                 __DIR__.'/../config/language-recognizer.php' => config_path('language-recognizer.php'),
             ]);
