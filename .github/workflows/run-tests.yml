@@ -28,8 +28,8 @@ jobs:
 
       - name: Download Franc binary
         run: |
-          wget -O ./bin/language-guesser https://github.com/avvertix/franc-bin/releases/download/v1.0.0/franc-bin-linux
-          chmod +x ./bin/language-guesser
+          wget -O ./bin/language-recognizer https://github.com/avvertix/franc-bin/releases/download/v1.0.0/franc-bin-linux
+          chmod +x ./bin/language-recognizer
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
