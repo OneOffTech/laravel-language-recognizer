@@ -28,6 +28,8 @@ class LaravelLanguageRecognizer extends Manager
 
     /**
      * @return \Oneofftech\LaravelLanguageRecognizer\Drivers\LocalLanguageRecognizerDriver
+     * 
+     * @psalm-suppress UndefinedInterfaceMethod
      */
     protected function createLocalDriver()
     {
@@ -38,6 +40,8 @@ class LaravelLanguageRecognizer extends Manager
      * Get the default driver name.
      *
      * @return string
+     * 
+     * @psalm-suppress UndefinedInterfaceMethod
      */
     public function getDefaultDriver()
     {

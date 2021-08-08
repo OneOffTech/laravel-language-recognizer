@@ -17,7 +17,7 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
      * 
      * @var string
      */
-    protected $binaryPath = null;
+    protected $binaryPath;
 
     public function __construct($config)
     {
@@ -29,17 +29,14 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
     }
 
     /**
-     * @return false|string
+     * 
+     * @param string $configuredPath
+     * @return string
+     * @throws \InvalidArgumentException
      */
     protected function obtainBinaryPath($configuredPath)
     {
         $basePath = Str::startsWith($configuredPath, '.') ? base_path($configuredPath) : $configuredPath;
-
-        // $basePath = realpath($resolvedPath);
-
-        // if($basePath === false){
-        //     throw new InvalidArgumentException("Specified path [{$resolvedPath}] cannot be resolved to a valid, existing path.");
-        // }
 
         $suffixes = [
             '',
@@ -76,6 +73,10 @@ class LocalLanguageRecognizerDriver implements LanguageRecognizer
             })->toArray();
     }
 
+    /**
+     * @param string $text
+     * @return string
+     */
     private function run($text): string
     {
         $options = [$this->binaryPath, '--all'];
