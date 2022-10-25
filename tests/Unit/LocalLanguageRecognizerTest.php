@@ -49,7 +49,7 @@ class LocalLanguageRecognizerTest extends TestCase
 
         $this->assertEquals([
             "sco" => 1.0,
-            "eng" => 0.9869318181818282,
+            "eng" => 0.9869318181818182,
           ], $languages);
     }
 
