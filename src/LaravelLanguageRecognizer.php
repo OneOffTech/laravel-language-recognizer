@@ -3,6 +3,7 @@
 namespace Oneofftech\LaravelLanguageRecognizer;
 
 use Illuminate\Support\Manager;
+use Oneofftech\LaravelLanguageRecognizer\Drivers\DeeplLanguageRecognizerDriver;
 use Oneofftech\LaravelLanguageRecognizer\Drivers\LocalLanguageRecognizerDriver;
 
 /**
@@ -34,6 +35,16 @@ class LaravelLanguageRecognizer extends Manager
     protected function createLocalDriver()
     {
         return new LocalLanguageRecognizerDriver($this->container['config']['language-recognizer.drivers.local']);
+    }
+
+    /**
+     * @return \Oneofftech\LaravelLanguageRecognizer\Drivers\DeeplLanguageRecognizerDriver
+     *
+     * @psalm-suppress UndefinedInterfaceMethod
+     */
+    protected function createDeeplDriver()
+    {
+        return new DeeplLanguageRecognizerDriver($this->container['config']['language-recognizer.drivers.deepl']);
     }
 
     /**

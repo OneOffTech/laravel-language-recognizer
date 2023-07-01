@@ -65,6 +65,9 @@ class InstallLocalRecognizerCommand extends Command
 
     protected function getDownloadPath()
     {
+        /**
+         * @var string
+         */
         $pathOption = $this->option('path');
 
         if ($pathOption) {
