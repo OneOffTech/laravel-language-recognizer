@@ -1,12 +1,19 @@
 # Laravel Language Recognizer
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/oneofftech/laravel-language-recognizer.svg?style=flat-square)](https://packagist.org/packages/oneofftech/laravel-language-recognizer)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/oneofftech/laravel-language-recognizer/run-tests?label=tests)](https://github.com/oneofftech/laravel-language-recognizer/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/oneofftech/laravel-language-recognizer/Check%20&%20fix%20styling?label=code%20style)](https://github.com/oneofftech/laravel-language-recognizer/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Unit tests badge](https://github.com/OneOffTech/laravel-language-recognizer/actions/workflows/run-tests.yml/badge.svg)](https://github.com/OneOffTech/laravel-language-recognizer/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/oneofftech/laravel-language-recognizer.svg?style=flat-square)](https://packagist.org/packages/oneofftech/laravel-language-recognizer)
 
 
 Recognize the language in which a text is written.
+
+Language Recognizer for Laravel is a package providing various drivers to recognize the language of a
+given text.
+
+Currently two drivers are offered:
+
+- A local binary application
+- A [DeepL](https://www.deepl.com/) based one
 
 ## Installation
 
@@ -15,6 +22,21 @@ You can install the package via composer:
 ```bash
 composer require oneofftech/laravel-language-recognizer
 ```
+
+You can publish the config file with:
+
+```bash
+php artisan vendor:publish --provider="Oneofftech\LaravelLanguageRecognizer\LaravelLanguageRecognizerServiceProvider" --tag="laravel-language-recognizer-config"
+```
+
+> If you change the path to the Franc binary, as configured in the local driver, ensure that the file is moved or present in that location. You can run `php artisan language-recognizer:install-local-driver` to download the binary in the configured location
+
+The configuration file allows to configure the driver parameter for
+performing the language recognition.
+
+### Driver pre-requisites
+
+**Local Driver**
 
 The language recognition, when performed using the local driver, 
 is done using the [Franc](https://github.com/wooorm/franc) library, in particular
@@ -26,16 +48,13 @@ To download the executable version run:
 php artisan language-recognizer:install-local-driver
 ```
 
-You can publish the config file with:
+**DeepL Driver**
 
-```bash
-php artisan vendor:publish --provider="Oneofftech\LaravelLanguageRecognizer\LaravelLanguageRecognizerServiceProvider" --tag="laravel-language-recognizer-config"
-```
+The [DeepL](https://www.deepl.com/) driver requires a valid API key.
+You can obtain a free key on [deepl.com](https://www.deepl.com/pro#developer).
 
-> If you change the path to the Franc binary, as configured in the local driver, ensure that the file is moved or present in that location. You can run `php artisan language-recognizer:install-local-driver` to download the binary in the configured location
+After obtaining the key specifiy it via the `LANGUAGE_RECOGNIZER_DEEPL_KEY` environment variable.
 
-This configuration file allows to specifiy the drivers for performing the language
-recognition and their eventual options.
 
 ## Usage
 
@@ -68,7 +87,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Alessio](https://github.com/avvertix)
-- [All Contributors](../../contributors)
+- [All Contributors](https://github.com/OneOffTech/laravel-language-recognizer/graphs/contributors)
 
 ## License
 
