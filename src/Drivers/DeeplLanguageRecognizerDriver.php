@@ -3,17 +3,12 @@
 namespace Oneofftech\LaravelLanguageRecognizer\Drivers;
 
 use Exception;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Str;
 use InvalidArgumentException;
 use Oneofftech\LaravelLanguageRecognizer\Contracts\LanguageRecognizer;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 class DeeplLanguageRecognizerDriver implements LanguageRecognizer
 {
-
     protected string $host;
 
     protected string $token;
@@ -23,11 +18,11 @@ class DeeplLanguageRecognizerDriver implements LanguageRecognizer
         if (empty($config['host'] ?? null)) {
             throw new InvalidArgumentException("Invalid host");
         }
-        
+
         if (empty($config['key'] ?? null)) {
             throw new InvalidArgumentException("Invalid authentication key");
         }
-        
+
         if (empty(trim($config['host']))) {
             throw new InvalidArgumentException("Invalid host");
         }
@@ -39,7 +34,6 @@ class DeeplLanguageRecognizerDriver implements LanguageRecognizer
         $this->host = rtrim($config['host'], '/');
         $this->token = $config['key'];
     }
-
 
     /**
      * @inherit
@@ -59,18 +53,16 @@ class DeeplLanguageRecognizerDriver implements LanguageRecognizer
 
         $detectedLanguage = $json['translations'][0]['detected_source_language'] ?? null;
 
-        if(is_null($detectedLanguage)){
+        if (is_null($detectedLanguage)) {
             throw new Exception('Failed to obtain detected language from DeepL API');
         }
 
-        if(in_array($detectedLanguage, ['EN-US', 'EN-GB'])){
+        if (in_array($detectedLanguage, ['EN-US', 'EN-GB'])) {
             $detectedLanguage = 'EN';
         }
 
         return [
-            $detectedLanguage => 1.0
+            $detectedLanguage => 1.0,
         ];
     }
-
-    
 }

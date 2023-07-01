@@ -3,7 +3,6 @@
 namespace Oneofftech\LaravelLanguageRecognizer\Tests\Unit;
 
 use Illuminate\Http\Client\Request;
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use InvalidArgumentException;
 use Oneofftech\LaravelLanguageRecognizer\Drivers\DeeplLanguageRecognizerDriver;
@@ -33,14 +32,13 @@ class DeeplLanguageRecognizerTest extends TestCase
         ]);
     }
 
-
     /** @test */
     public function it_can_recognize_a_string()
     {
         Http::preventStrayRequests();
 
         Http::fake([
-            'https://api-free.deepl.com/*' => Http::response('{"translations": [{"detected_source_language": "EN","text": "This should be an english string"}]}', 200)
+            'https://api-free.deepl.com/*' => Http::response('{"translations": [{"detected_source_language": "EN","text": "This should be an english string"}]}', 200),
         ]);
 
 
@@ -61,5 +59,4 @@ class DeeplLanguageRecognizerTest extends TestCase
                     $request['target_lang'] === 'EN-US';
         });
     }
-
 }

@@ -36,7 +36,7 @@ class LaravelLanguageRecognizer extends Manager
     {
         return new LocalLanguageRecognizerDriver($this->container['config']['language-recognizer.drivers.local']);
     }
-    
+
     /**
      * @return \Oneofftech\LaravelLanguageRecognizer\Drivers\DeeplLanguageRecognizerDriver
      *
