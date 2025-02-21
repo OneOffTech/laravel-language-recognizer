@@ -27,7 +27,9 @@
         "nunomaduro/collision": "^7.0|^8.0",
         "orchestra/testbench": "^8.0|^9.0",
         "phpunit/phpunit": "^10.5|^11.0",
-        "vimeo/psalm": "^5.0",
+        "larastan/larastan": "^2.9||^3.0",
+        "phpstan/phpstan-deprecation-rules": "^1.1||^2.0",
+        "phpstan/phpstan-phpunit": "^1.3||^2.0",
         "guzzlehttp/guzzle": "^7.0.1"
     },
     "autoload": {
@@ -41,12 +43,16 @@
         }
     },
     "scripts": {
-        "psalm": "vendor/bin/psalm",
+        "analyse": "vendor/bin/phpstan analyse",
         "test": "vendor/bin/phpunit --no-coverage",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "laravel": {
@@ -55,6 +61,6 @@
             ]
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

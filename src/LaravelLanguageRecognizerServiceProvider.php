@@ -27,7 +27,7 @@ class LaravelLanguageRecognizerServiceProvider extends ServiceProvider
             'language-recognizer'
         );
 
-        $this->app->singleton(LaravelLanguageRecognizer::class, function ($app) {
+        $this->app->bind(LaravelLanguageRecognizer::class, function ($app) {
             return new LaravelLanguageRecognizer($app);
         });
     }
